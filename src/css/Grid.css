@@ -1,0 +1,16 @@
+.cell {
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
+}
+.cell:hover {
+  cursor: pointer;
+  color: rebeccapurple;
+}
+.grid {
+  display: grid;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+}
