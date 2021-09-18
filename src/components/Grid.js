@@ -77,7 +77,8 @@ function Grid() {
     }
     simulation();
     setTimeout(runSimulation, 100);
-    setGeneration(generation++);
+
+    setGeneration((g) => ++g);
   }, []);
 
   useEffect(() => {
@@ -100,17 +101,21 @@ function Grid() {
     }
   };
   const handleStep = () => {
+    setGeneration(++generation);
     simulation();
   };
   const handleReset = () => {
     setGrid(initialGrid);
     setGeneration(0);
+    setRunning(false);
   };
   const handleClear = () => {
+    setGeneration(0);
     setGrid(generateEmptyGrid());
     setInitialGrid(generateEmptyGrid());
-    setGeneration(0);
+    setRunning(false);
   };
+
   const handleRandom = () => {
     const rows = [];
     for (let i = 0; i < numRows; i++) {
@@ -123,18 +128,27 @@ function Grid() {
   };
 
   return (
-    <>
-      <div className="buttons">
-        <button onClick={handleRun}>{running ? "Pause" : "Start"}</button>
+    <section className="main-container">
+      <div className="btn-group">
+        <button className="btn btn-success" onClick={handleRun}>
+          {running ? "Pause" : "Start"}
+        </button>
         <button
+          className="btn btn-outline-primary"
           onClick={handleStep}
           disabled={runningRef.current ? true : false}
         >
           Step&gt;
         </button>
-        <button onClick={handleReset}>Reset</button>
-        <button onClick={handleClear}>Clear</button>
-        <button onClick={handleRandom}>Random</button>
+        <button className="btn btn-outline-primary" onClick={handleReset}>
+          Reset
+        </button>
+        <button className="btn btn-outline-primary" onClick={handleClear}>
+          Clear
+        </button>
+        <button className="btn btn-outline-primary" onClick={handleRandom}>
+          Random
+        </button>
       </div>
       <div className="container">
         <div
@@ -146,7 +160,7 @@ function Grid() {
               <div
                 key={`${i}-${j}`}
                 className="cell"
-                style={{ backgroundColor: grid[i][j] ? "blue" : undefined }}
+                style={{ backgroundColor: grid[i][j] ? "#6f42c1" : undefined }}
                 onClick={() => handleClick(i, j)}
               />
             ))
@@ -157,7 +171,7 @@ function Grid() {
           <div className="population">Population: {population}</div>
         </div>
       </div>
-    </>
+    </section>
   );
 }
 
