@@ -5,6 +5,14 @@ import produce from "immer";
 const numRows = 30;
 const numCols = 30;
 
+const generateEmptyGrid = () => {
+  const rows = [];
+  for (let i = 0; i < numRows; i++) {
+    rows.push(Array.from(Array(numCols), () => 0));
+  }
+  return rows;
+};
+
 const operations = [
   [0, 1],
   [1, 0],
@@ -16,20 +24,14 @@ const operations = [
   [1, 1],
 ];
 
-const generateEmptyGrid = () => {
-  const rows = [];
-  for (let i = 0; i < numRows; i++) {
-    rows.push(Array.from(Array(numCols), () => 0));
-  }
-  return rows;
-};
-
 function Grid() {
   let [generation, setGeneration] = useState(0);
   let [population, setPopulation] = useState(0);
+
   const [grid, setGrid] = useState(() => {
     return generateEmptyGrid();
   });
+
   const [initialGrid, setInitialGrid] = useState();
 
   const handleClick = (i, j) => {

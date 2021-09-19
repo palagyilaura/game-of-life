@@ -1,8 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@600&family=Roboto+Mono:wght@400;600&display=swap");
+
 .App {
   text-align: center;
-  /*display: flex;
-  flex-direction: column;*/
-  margin: 40px;
+  padding: 40px;
+  font-family: "Anton", sans-serif;
+  background: #f2f2f2;
 }
 h1 {
   padding-bottom: 30px;
